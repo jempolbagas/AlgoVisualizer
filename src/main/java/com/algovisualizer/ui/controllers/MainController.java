@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
@@ -112,7 +113,7 @@ public class MainController implements Initializable {
         
         Node clickedNode = graph.findNodeAt(x, y, NODE_RADIUS);
         
-        if (event.getButton().name().equals("SECONDARY")) { // Right click
+        if (event.getButton() == MouseButton.SECONDARY) { // Right click
             handleRightClick(clickedNode, event);
         } else { // Left click
             if (nodeMode.isSelected()) {
