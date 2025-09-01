@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.canvas.Canvas?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.algovisualizer.ui.controllers.MainController">
+   <top>
+      <VBox>
+         <!-- Menu Bar -->
+         <MenuBar>
+            <Menu text="File">
+               <MenuItem text="New Graph" />
+               <MenuItem text="Open Graph..." />
+               <MenuItem text="Save Graph..." />
+               <SeparatorMenuItem />
+               <MenuItem text="Exit" />
+            </Menu>
+            <Menu text="Graph">
+               <MenuItem text="Clear Graph" onAction="#clearGraph" />
+               <MenuItem text="Reset Animation" onAction="#resetAnimation" />
+            </Menu>
+            <Menu text="Help">
+               <MenuItem text="About" />
+               <MenuItem text="Instructions" />
+            </Menu>
+         </MenuBar>
+         
+         <!-- Toolbar -->
+         <ToolBar>
+            <Label text="Mode:" />
+            <ToggleButton fx:id="nodeMode" text="Node Mode" />
+            <ToggleButton fx:id="edgeMode" text="Edge Mode" />
+            <Separator />
+            
+            <Label text="Algorithm:" />
+            <ComboBox fx:id="algorithmComboBox" prefWidth="200" />
+            <Separator />
+            
+            <Button fx:id="playButton" text="Play" onAction="#playAlgorithm" />
+            <Button fx:id="pauseButton" text="Pause" onAction="#pauseAnimation" />
+            <Button fx:id="resetButton" text="Reset" onAction="#resetAnimation" />
+            <Button fx:id="clearButton" text="Clear" onAction="#clearGraph" />
+            <Separator />
+            
+            <Label text="Speed:" />
+            <Slider fx:id="speedSlider" prefWidth="100" />
+         </ToolBar>
+      </VBox>
+   </top>
+   
+   <center>
+      <BorderPane>
+         <center>
+            <!-- Main Canvas -->
+            <ScrollPane fitToHeight="true" fitToWidth="true">
+               <Canvas fx:id="graphCanvas" height="600" width="800" />
+            </ScrollPane>
+         </center>
+      </BorderPane>
+   </center>
+   
+   <right>
+      <!-- Information Panel -->
+      <VBox prefWidth="300" spacing="10">
+         <padding>
+            <Insets bottom="10" left="10" right="10" top="10" />
+         </padding>
+         
+         <Label text="Information Panel" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+         
+         <VBox spacing="5">
+            <Label text="Algorithm Info:" style="-fx-font-weight: bold;" />
+            <TextArea fx:id="infoTextArea" prefHeight="200" wrapText="true" editable="false" />
+         </VBox>
+         
+         <VBox spacing="5">
+            <Label text="Graph Statistics:" style="-fx-font-weight: bold;" />
+            <Label text="Nodes: 0" />
+            <Label text="Edges: 0" />
+         </VBox>
+         
+         <VBox spacing="5">
+            <Label text="Instructions:" style="-fx-font-weight: bold;" />
+            <Label text="• Node Mode: Click to add nodes" wrapText="true" />
+            <Label text="• Edge Mode: Click two nodes to connect" wrapText="true" />
+            <Label text="• Right-click node: Set start/target" wrapText="true" />
+            <Label text="• Drag nodes to move them" wrapText="true" />
+         </VBox>
+      </VBox>
+   </right>
+   
+   <bottom>
+      <!-- Status Bar -->
+      <Label fx:id="statusLabel" text="Ready" style="-fx-padding: 5; -fx-background-color: #f0f0f0;" />
+   </bottom>
+</BorderPane>
