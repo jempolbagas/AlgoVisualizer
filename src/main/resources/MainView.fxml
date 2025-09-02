@@ -12,8 +12,8 @@
          <MenuBar>
             <Menu text="File">
                <MenuItem text="New Graph" />
-               <MenuItem text="Open Graph..." />
-               <MenuItem text="Save Graph..." />
+               <MenuItem text="Open Graph..." disable="true" />
+               <MenuItem text="Save Graph..." disable="true" />
                <SeparatorMenuItem />
                <MenuItem text="Exit" />
             </Menu>

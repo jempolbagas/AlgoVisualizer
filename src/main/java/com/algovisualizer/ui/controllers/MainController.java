@@ -62,7 +62,7 @@ public class MainController implements Initializable {
     
     private void setupUI() {
         // Initialize algorithm combo box
-        algorithmComboBox.getItems().addAll("BFS - Breadth-First Search", "DFS - Depth-First Search");
+        algorithmComboBox.getItems().addAll("BFS - Breadth-First Search");
         algorithmComboBox.setValue("BFS - Breadth-First Search");
         
         // Initialize speed slider
@@ -239,8 +239,21 @@ public class MainController implements Initializable {
     
     private void animateStep() {
         if (currentResult == null || currentStep >= currentResult.getSteps().size()) {
-            pauseAnimation();
-            statusLabel.setText("Animation complete");
+            if (animationTimeline != null) {
+                animationTimeline.stop();
+            }
+
+            // Check if we were searching for a target and if it was found.
+            if (targetNode != null) {
+                List<Node> path = currentResult.getPathTo(targetNode);
+                if (path.isEmpty() || !path.get(path.size() - 1).equals(targetNode)) {
+                    statusLabel.setText("Target " + targetNode.getLabel() + " not found.");
+                } else {
+                    statusLabel.setText("Path found to " + targetNode.getLabel() + "!");
+                }
+            } else {
+                statusLabel.setText("Animation complete.");
+            }
             return;
         }
         
